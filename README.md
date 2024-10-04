@@ -1,1 +1,1 @@
-link : https://django-api-zo2q.onrender.com
+live Link : https://django-api-zo2q.onrender.com
