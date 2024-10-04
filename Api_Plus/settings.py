@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "corsheaders.middleware.CorsMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
    
 ]
 
@@ -124,12 +125,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'  # URL for serving static files
-# For development purposes: additional directories for static files
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # Directory for custom static files
-]
-# For production: collect static files to this directory
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Where collected static files go in production
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 # Media files (user-uploaded files)
 MEDIA_URL = '/media/'  # URL for serving media files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Directory for storing media files
@@ -154,3 +151,6 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10  # Specify the number of products per page
 }
+
+
+
