@@ -141,10 +141,10 @@ UNFOLD = {
     }
 
 # Allow CORS for all origins (use this cautiously in production)
-CORS_ALLOW_ALL_ORIGINS = True
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:3000",  # or the URL of your Next.js app
-# ]
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = [
+     "http://localhost:3000",  # or the URL of your Next.js app
+ ]
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
