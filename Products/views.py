@@ -36,38 +36,7 @@ class ProductPagination(PageNumberPagination):
     page_size_query_param = 'page_size'
     max_page_size = 100
 
-# class ProductViewSet(viewsets.ModelViewSet):
-    # queryset = Product.objects.all()
-    # serializer_class = ProductSerializer
-    # pagination_class = ProductPagination  # Use the custom pagination
-    # filter_backends = [DjangoFilterBackend, filters.OrderingFilter,SearchFilter ]
-    # filterset_fields = ['product_name', 'price']  # Specify the fields you want to allow filtering by
-    # ordering_fields = ['product_name', 'price']
-    # search_fields = ['product_name', 'price']  # fields you want to search in
-    
-    # # Optional: Customize response for creating a product
-    # def create(self, request, *args, **kwargs):
-    #     serializer = self.get_serializer(data=request.data)
-    #     if serializer.is_valid():
-    #         self.perform_create(serializer)
-    #         return Response({"message": "Product created successfully"}, status=status.HTTP_201_CREATED)
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    # # Optional: Customize response for updating a product
-    # def update(self, request, *args, **kwargs):
-    #     partial = kwargs.pop('partial', False)
-    #     instance = self.get_object()
-    #     serializer = self.get_serializer(instance, data=request.data, partial=partial)
-    #     if serializer.is_valid():
-    #         self.perform_update(serializer)
-    #         return Response({"message": "Product updated successfully"}, status=status.HTTP_200_OK)
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    # # Optional: Customize response for deleting a product
-    # def destroy(self, request, *args, **kwargs):
-    #     instance = self.get_object()
-    #     self.perform_destroy(instance)
-    #     return Response({"message": "Product deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
@@ -134,14 +103,17 @@ class UserViewSet(viewsets.ViewSet):
     @action(detail=False, methods=['post'])
     def login(self, request):
         """Handle user login"""
-        username = request.data.get('username')
+        # username = request.data.get('username')
+        email = request.data.get('email')
         password = request.data.get('password')
         
-        if not username or not password:
-            return Response("Username and password are required", status=status.HTTP_400_BAD_REQUEST)
+        # if not username or not password:
+        #     return Response("Username and password are required", status=status.HTTP_400_BAD_REQUEST)
+        if not email or not password:
+              return Response("Email and password are required", status=status.HTTP_400_BAD_REQUEST)
         
         try:
-            user = User.objects.get(username=username)
+            user = User.objects.get(email=email)
         except User.DoesNotExist:
             return Response("Invalid credentials", status=status.HTTP_404_NOT_FOUND)
         
