@@ -93,8 +93,8 @@ class UserViewSet(viewsets.ViewSet):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            # user = User.objects.get(username=request.data['username'])
-            user = User.objects.get(email=request.data['email'])
+            user = User.objects.get(username=request.data['username'])
+            #user = User.objects.get(email=request.data['email'])
             user.set_password(request.data['password'])
             user.save()
             token, created = Token.objects.get_or_create(user=user)
@@ -104,17 +104,17 @@ class UserViewSet(viewsets.ViewSet):
     @action(detail=False, methods=['post'])
     def login(self, request):
         """Handle user login"""
-        # username = request.data.get('username')
-        email = request.data.get('email')
+         username = request.data.get('username')
+        #email = request.data.get('email')
         password = request.data.get('password')
         
-        # if not username or not password:
-        #     return Response("Username and password are required", status=status.HTTP_400_BAD_REQUEST)
-        if not email or not password:
-              return Response("Email and password are required", status=status.HTTP_400_BAD_REQUEST)
+         if not username or not password:
+             return Response("Username and password are required", status=status.HTTP_400_BAD_REQUEST)
+        #if not email or not password:
+              #return Response("Email and password are required", status=status.HTTP_400_BAD_REQUEST)
         
         try:
-            user = User.objects.get(email=email)
+            user = User.objects.get(username=username)
         except User.DoesNotExist:
             return Response("Invalid credentials", status=status.HTTP_404_NOT_FOUND)
         
