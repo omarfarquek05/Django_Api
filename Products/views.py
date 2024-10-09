@@ -104,7 +104,7 @@ class UserViewSet(viewsets.ViewSet):
     @action(detail=False, methods=['post'])
     def login(self, request):
         """Handle user login"""
-         username = request.data.get('username')
+        username = request.data.get('username')
         #email = request.data.get('email')
         password = request.data.get('password')
         
