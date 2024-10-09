@@ -108,8 +108,8 @@ class UserViewSet(viewsets.ViewSet):
         #email = request.data.get('email')
         password = request.data.get('password')
         
-         if not username or not password:
-             return Response("Username and password are required", status=status.HTTP_400_BAD_REQUEST)
+        if not username or not password:
+            return Response("Username and password are required", status=status.HTTP_400_BAD_REQUEST)
         #if not email or not password:
               #return Response("Email and password are required", status=status.HTTP_400_BAD_REQUEST)
         
